@@ -8,7 +8,7 @@
         <ul class="navbar-nav ml-auto">
        <?php if($this->session->userdata('id') ) { ?>
         <li class="nav-item">
-            <a class="nav-link" href="<?= site_url("../"); ?>">Accueil</a>
+            <a class="nav-link" href="<?= base_url() ?>">Accueil</a>
           </li>
           <?php if( $this->session->userdata('role') == 2) { ?>          
             <li class="nav-item">

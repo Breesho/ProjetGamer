@@ -26,7 +26,7 @@ class Login extends CI_Controller {
         if( $this->form_validation->run() ) {
             $result = $this->login_model->can_login($this->input->post('User_Mail'), $this->input->post('User_Password'));
             if( $result == '' ) {
-                redirect('article');
+                redirect('article/list');
             } else {
                 $this->session->set_flashdata('message', $result);
                 redirect('login');
@@ -42,6 +42,6 @@ class Login extends CI_Controller {
 		foreach ($data as $row => $rows_value) {
 			$this->session->unset_userdata($row);
 		}
-		redirect('article');
+		redirect('article/list');
 	}
 }

@@ -1,5 +1,7 @@
 <?php
 
+// application/controllers/Dashboard.php
+
 class Dashboard extends CI_Controller {
 	
 	public function __construct()
@@ -24,6 +26,4 @@ class Dashboard extends CI_Controller {
 		$this->load->view('pages/dashboard');
         $this->load->view('templates/footer', $data);
     }
-
-	
 }
