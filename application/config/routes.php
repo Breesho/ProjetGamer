@@ -56,6 +56,7 @@ $route['logout'] = 'login/logout';
 $route['user'] = 'user';
 $route['article/create'] = 'article/create';
 $route['article/list'] = 'article/index';
+$route['article/detail/(:any)'] = 'article/detail/$1';
 
 $route['(:any)'] = 'pages/view/$1';
 

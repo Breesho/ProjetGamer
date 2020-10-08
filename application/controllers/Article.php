@@ -16,9 +16,10 @@ class Article extends CI_Controller {
     public function index($page = 'home')
     {
         $data['title'] = ucfirst($page); // Capitalize the first letter
+        $data['articles_item'] = $this->article_model->get_articles();
         $this->load->view('templates/header', $data);
 		$this->load->view('templates/nav', $data);
-        $this->load->view('article/list');
+        $this->load->view('article/list', $data);
         $this->load->view('templates/footer', $data);
     }
 
@@ -55,5 +56,15 @@ class Article extends CI_Controller {
         } else {
             $this->create();
         }
+    }
+
+    public function detail($slug, $page = 'home')
+    {
+        $data['title'] = ucfirst($page); // Capitalize the first letter
+        $data['articles_item'] = $this->article_model->get_article_detail($slug);
+        $this->load->view('templates/header', $data);
+		$this->load->view('templates/nav', $data);
+        $this->load->view('article/detail', $data);
+        $this->load->view('templates/footer', $data);        
     }
 }
