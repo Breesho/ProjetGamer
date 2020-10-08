@@ -8,23 +8,23 @@
         <ul class="navbar-nav ml-auto">
        <?php if (!isset($_SESSION)) { ?>
         <li class="nav-item">
-            <a class="nav-link" href="<?php echo site_url("../"); ?>">Accueil</a>
+            <a class="nav-link" href="<?= site_url("../"); ?>">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo site_url("dashboard"); ?>">Dashboard</a>
+            <a class="nav-link" href="<?= site_url("dashboard"); ?>">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?php echo site_url("profil"); ?>">Profil</a>
+            <a class="nav-link" href="<?= site_url("profil"); ?>">Profil</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Deconnexion</a>
           </li>
          <?php } else { ?>
               <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url("register"); ?>">S'inscrire</a>
+              <a class="nav-link" href="<?= site_url("register"); ?>">S'inscrire</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url("login"); ?>">Se connecter</a>
+              <a class="nav-link" href="<?= site_url("login"); ?>">Se connecter</a>
             </li>
          <?php } ?>
         </ul>
