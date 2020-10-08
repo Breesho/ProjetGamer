@@ -6,18 +6,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-       <?php if (!isset($_SESSION)) { ?>
+       <?php if($this->session->userdata('id') ) { ?>
         <li class="nav-item">
             <a class="nav-link" href="<?= site_url("../"); ?>">Accueil</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?= site_url("dashboard"); ?>">Dashboard</a>
-          </li>
+          <?php if( $this->session->userdata('role') == 2) { ?>          
+            <li class="nav-item">
+              <a class="nav-link" href="<?= site_url("dashboard"); ?>">Dashboard</a>
+            </li>
+          <?php } ?>
           <li class="nav-item">
             <a class="nav-link" href="<?= site_url("profil"); ?>">Profil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Deconnexion</a>
+            <a class="nav-link" href="<?= site_url("logout"); ?>">Deconnexion</a>
           </li>
          <?php } else { ?>
               <li class="nav-item">

@@ -14,6 +14,7 @@ class Login_model extends CI_Model {
                     $store_password = $this->encryption->decrypt($row->User_Password);
                     if( $password == $store_password ) {
                         $this->session->set_userdata('id', $row->ID_User);
+                        $this->session->set_userdata('role', $row->ID_Role);
                     } else {
                         return 'Mot de passe incorrecte.';
                     }
