@@ -62,9 +62,62 @@ class Article extends CI_Controller {
     {
         $data['title'] = ucfirst($page); // Capitalize the first letter
         $data['articles_item'] = $this->article_model->get_article_detail($slug);
+        /*
+            Récupération de tous les commentaires
+            Possibilité d'ajouter un commentaire au dessus de la liste
+        */
         $this->load->view('templates/header', $data);
 		$this->load->view('templates/nav', $data);
         $this->load->view('article/detail', $data);
         $this->load->view('templates/footer', $data);        
+    }
+
+    function edit($slug)
+    {   
+        // check if the article exists before trying to edit it
+        $data['article'] = $this->article_model->get_article_detail($slug);
+        
+        if(isset($data['article']['Article_Slug']))
+        {
+			$this->form_validation->set_rules('Article_Title','Article Title','required|max_length[255]');
+			$this->form_validation->set_rules('Article_Picture','Article Picture','required|max_length[255]');
+			$this->form_validation->set_rules('Article_Score','Article Score','integer');
+			$this->form_validation->set_rules('ID_Categorie','ID Categorie','required|integer');
+			$this->form_validation->set_rules('Article_Descritption','Article Description','required');
+		
+			if($this->form_validation->run()) {   
+                $data = array(
+					'Article_Title'         => $this->input->post('Article_Title'),
+					'Article_Picture'       => $this->input->post('Article_Picture'),
+					'Article_Score'         => $this->input->post('Article_Score'),
+					'Article_Slug'          => $slug,
+					'ID_Categorie'          => $this->input->post('ID_Categorie'),
+					'Article_Descritption'  => $this->input->post('Article_Descritption'),
+                );
+
+                $this->article_model->update_article($slug, $data);            
+                redirect('article/list');
+            } else {
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/nav', $data);
+                $this->load->view('article/edit', $data);
+                $this->load->view('templates/footer', $data);     
+            }
+        } else {
+            show_error('The article you are trying to edit does not exist.');
+        }
+    }
+
+    function remove($slug)
+    {
+        $article = $this->article_model->get_article_detail($slug);
+
+        // check if the article exists before trying to delete it
+        if(isset($article['Article_Slug'])) {
+            $this->article_model->delete_article($slug);
+            redirect('article/list');
+        } else {
+            show_error('The article you are trying to delete does not exist.');
+        }        
     }
 }

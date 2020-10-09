@@ -6,6 +6,10 @@
     <div class="main">
         <?= $article['Article_CreateAt']; ?><br />
         <p>Note : <?= $article['Article_Score']; ?>/5</p><br />
+
+        <a href="<?= site_url('article/edit/'.$article['Article_Slug']); ?>" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> Edit</a> 
+        <a href="<?= site_url('article/remove/'.$article['Article_Slug']); ?>" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span> Delete</a>
+
     </div>
     <hr>
 

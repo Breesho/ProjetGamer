@@ -24,4 +24,17 @@ class Article_model extends CI_Model {
 
         return $query->row_array();
     }
+
+    function update_article($slug, $data)
+    {
+        $this->db->where('Article_Slug', $slug);
+        return $this->db->update('articles', $data);
+    }
+    
+    function delete_article($slug)
+    {
+        return $this->db->delete('articles', array(
+            'Article_Slug' => $slug
+        ));
+    }
 }
