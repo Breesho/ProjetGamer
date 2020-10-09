@@ -6,15 +6,16 @@ class User extends CI_Controller{
     function __construct()
     {
         parent::__construct();
-        $this->load->model('User_model');
+        $this->load->model('user_model');
     } 
 
     function index()
     {
-        $data['user'] = $this->User_model->get_all_user();
-        
-        $data['_view'] = 'user/index';
-        $this->load->view('layouts/main',$data);
+        $data['user'] = $this->user_model->get_all_user();
+        $this->load->view('templates/header', $data);
+		$this->load->view('templates/nav', $data);
+        $this->load->view('user/index', $data);
+        $this->load->view('templates/footer', $data);
     }
 
     function add()
@@ -43,20 +44,22 @@ class User extends CI_Controller{
 				'ID_Role' => $this->input->post('ID_Role'),
             );
             
-            $user_id = $this->User_model->add_user($params);
+            $user_id = $this->user_model->add_user($params);
             redirect('user/index');
         }
         else
         {            
-            $data['_view'] = 'user/add';
-            $this->load->view('layouts/main',$data);
+            $this->load->view('templates/header', $data);
+		$this->load->view('templates/nav', $data);
+        $this->load->view('user/add', $data);
+        $this->load->view('templates/footer', $data);
         }
     }  
 
     function edit($ID_User)
     {   
         // check if the user exists before trying to edit it
-        $data['user'] = $this->User_model->get_user($ID_User);
+        $data['user'] = $this->user_model->get_user($ID_User);
         
         if(isset($data['user']['ID_User']))
         {
@@ -84,13 +87,15 @@ class User extends CI_Controller{
 					'ID_Role' => $this->input->post('ID_Role'),
                 );
 
-                $this->User_model->update_user($ID_User,$params);            
+                $this->user_model->update_user($ID_User,$params);            
                 redirect('user/index');
             }
             else
             {
-                $data['_view'] = 'user/edit';
-                $this->load->view('layouts/main',$data);
+                $this->load->view('templates/header', $data);
+                $this->load->view('templates/nav', $data);
+                $this->load->view('user/edit', $data);
+                $this->load->view('templates/footer', $data);
             }
         }
         else
@@ -99,12 +104,12 @@ class User extends CI_Controller{
 
     function remove($ID_User)
     {
-        $user = $this->User_model->get_user($ID_User);
+        $user = $this->user_model->get_user($ID_User);
 
         // check if the user exists before trying to delete it
         if(isset($user['ID_User']))
         {
-            $this->User_model->delete_user($ID_User);
+            $this->user_model->delete_user($ID_User);
             redirect('user/index');
         }
         else

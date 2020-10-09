@@ -13,7 +13,7 @@ class Dashboard extends CI_Controller {
 		}
 		if( $this->session->userdata('role') != 2 )
 		{
-			redirect('article');
+			redirect('article/list');
 		}
 	}
 
