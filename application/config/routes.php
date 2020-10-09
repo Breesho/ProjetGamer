@@ -57,6 +57,7 @@ $route['user'] = 'user';
 $route['article/create'] = 'article/create';
 $route['article/list'] = 'article/index';
 $route['article/detail/(:any)'] = 'article/detail/$1';
+$route['article/detail/(:any)/commentary/add'] = 'article/detail/$1/commentary/add';
 
 $route['(:any)'] = 'pages/view/$1';
 

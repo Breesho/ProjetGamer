@@ -50,48 +50,32 @@
         <div class="card my-4">
           <h5 class="card-header">Leave a Comment:</h5>
           <div class="card-body">
-            <form>
+            <form method="post" action="<?= base_url("commentary/add"); ?>">
               <div class="form-group">
-                <textarea class="form-control" rows="3"></textarea>
+                <textarea class="form-control" rows="3" name="Commentary_Text" value="<?= set_value("Commentary_Text"); ?>"></textarea>
               </div>
+              <span class="text-danger"><?= form_error('Commentary_Text'); ?></span>
+              <input type="hidden" name="ID_Article" value="<?= $articles_item['ID_Article']; ?>" />
+              <input type="hidden" name="Article_Slug" value="<?= $articles_item['Article_Slug']; ?>" />
+              <input type="hidden" name="ID_User" value="<?= $this->session->userdata['id']; ?>" />
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
           </div>
         </div>
 
-        <!-- Single Comment -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
-        </div>
-
         <!-- Comment with nested comments -->
         <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
 
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
+          <?php foreach($commentaries as $com): ?>
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+              <h5 class="mt-0">Commenter Name : <?= $com['ID_User'] ?></h5>
+              <p>
+                <?= $com['Commentary_Text']; ?>
+              </p>
+
             </div>
-
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
-
-          </div>
+          <?php endforeach; ?>
         </div>
 
       </div>

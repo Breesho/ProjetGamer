@@ -10,6 +10,7 @@ class Article extends CI_Controller {
         $this->load->library('form_validation');
         $this->load->library('encryption');
         $this->load->model('article_model');
+        $this->load->model('commentary_model');
         $this->load->helper('url');
     }
 
@@ -62,10 +63,8 @@ class Article extends CI_Controller {
     {
         $data['title'] = ucfirst($page); // Capitalize the first letter
         $data['articles_item'] = $this->article_model->get_article_detail($slug);
-        /*
-            Récupération de tous les commentaires
-            Possibilité d'ajouter un commentaire au dessus de la liste
-        */
+        $data['commentaries'] = $this->commentary_model->get_all_commentary($data['articles_item']['ID_Article']);
+
         $this->load->view('templates/header', $data);
 		$this->load->view('templates/nav', $data);
         $this->load->view('article/detail', $data);
