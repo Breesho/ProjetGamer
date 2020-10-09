@@ -13,9 +13,13 @@ class Login extends CI_Controller {
         $this->load->helper('url');
     }
 
-    function index() 
-    {
+    function index($page = 'home') 
+    {$data['title'] = ucfirst($page); // Capitalize the first letter
+        $this->load->helper('url');
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/nav', $data);
         $this->load->view('login');
+        $this->load->view('templates/footer', $data);
     }
 
     function validation()

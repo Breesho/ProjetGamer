@@ -13,11 +13,14 @@ class Register extends CI_Controller {
         $this->load->helper('url');
     }
 
-    public function index()
-    {
+    function index($page = 'home') 
+    {$data['title'] = ucfirst($page); // Capitalize the first letter
+        $this->load->helper('url');
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/nav', $data);
         $this->load->view('register');
+        $this->load->view('templates/footer', $data);
     }
-
     public function validation()
     {
         $this->form_validation->set_rules('User_UserName', 'Nom', 'required|trim');
