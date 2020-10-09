@@ -1,12 +1,12 @@
-<div class="row">
+<div class="row p-2 m-auto">
     <div class="col-md-12">
       	<div class="box box-info">
             <div class="box-header with-border">
-              	<h3 class="box-title">User Edit</h3>
+              	<h3 class="box-title">Modification Compte</h3>
             </div>
 			<?php echo form_open('user/edit/'.$user['ID_User']); ?>
 			<div class="box-body">
-				<div class="row clearfix">
+				<div class="row clearfix d-flex flex-column">
 					<div class="col-md-6">
 						<div class="form-group">
 							<input type="checkbox" name="User_Is_Email_Verified" value="1" <?php echo ($user['User_Is_Email_Verified']==1 ? 'checked="checked"' : ''); ?> id='User_Is_Email_Verified' />

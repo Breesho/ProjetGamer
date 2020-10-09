@@ -1,8 +1,10 @@
-<div class="row">
+ 
+ 
+<div class="row m-auto">
     <div class="col-md-12">
         <div class="box">
             <div class="box-header">
-                <h3 class="box-title">User Listing</h3>
+                <h3 class="box-title"> Liste Utilisateur </h3>
             	<!-- <div class="box-tools">
                     <a href="<?php echo site_url('user/add'); ?>" class="btn btn-success btn-sm">Add</a> 
                 </div> -->
@@ -17,7 +19,7 @@
 						<th>Picture</th>
 						<th>Verification Key</th>
 						<th>CreateAt</th>
-						<th>DeleteAt</th>
+			 
 						<th>UpdateAt</th>
 						<th>ID Role</th>
 						<th>Actions</th>
@@ -31,7 +33,7 @@
 						<td><?php echo $u['User_Picture']; ?></td>
 						<td><?php echo $u['User_Verification_Key']; ?></td>
 						<td><?php echo $u['User_CreateAt']; ?></td>
-						<td><?php echo $u['User_DeleteAt']; ?></td>
+				
 						<td><?php echo $u['User_UpdateAt']; ?></td>
 						<td><?php echo $u['ID_Role']; ?></td>
 						<td>
@@ -46,3 +48,5 @@
         </div>
     </div>
 </div>
+	
+			 
